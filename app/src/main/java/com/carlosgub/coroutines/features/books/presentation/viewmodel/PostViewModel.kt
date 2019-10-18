@@ -21,6 +21,16 @@ class PostViewModel(
             val posts = mPostVMMapper.map(getPostsInteractor.execute(Interactor.None))
             postsDeferred.complete(posts)
         }
+
+        /*
+        * Experimental Para llamadas paralelas
+        *
+        * viewModelScope.launch(Dispatchers.IO){
+            val posts = async { mPostVMMapper.map(getPostsInteractor.execute(Interactor.None)) }
+            val posts2 = async { mPostVMMapper.map(getPostsInteractor.execute(Interactor.None)) }
+            postsDeferred.complete(posts.await() + posts2.await())
+        }
+        */
     }
 
     private val mPostVMMapper by lazy { PostVMMapper() }

@@ -33,6 +33,7 @@ class PostActivity : AppCompatActivity(),RVPostAdapter.Listener {
         lifecycleScope.launch {
             pbPost.visibility = View.VISIBLE
             val posts = viewModel.getPosts()
+
             pbPost.visibility = View.GONE
             mAdapter.addAll(posts)
         }

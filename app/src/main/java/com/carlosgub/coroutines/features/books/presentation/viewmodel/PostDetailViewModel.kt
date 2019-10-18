@@ -21,14 +21,11 @@ class PostDetailViewModel(
 
     suspend fun getPostById(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            launch(Dispatchers.Main){
-                state.value = PostDetailVS.Loading(true)
-            }
-            val post =  mPostVMMapper.map(getPostByIdInteractor.execute(GetPostByIdInteractor.Params(id = id)))
-            launch(Dispatchers.Main){
-                state.value = PostDetailVS.GetPost(post)
-                state.value = PostDetailVS.Loading(false)
-            }
+            state.postValue(PostDetailVS.Loading(true))
+            val post =
+                mPostVMMapper.map(getPostByIdInteractor.execute(GetPostByIdInteractor.Params(id = id)))
+            state.postValue(PostDetailVS.GetPost(post))
+            state.postValue(PostDetailVS.Loading(false))
         }
     }
 }

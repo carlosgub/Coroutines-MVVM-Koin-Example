@@ -43,6 +43,7 @@
                 tools:text="gg" />
 
             <androidx.constraintlayout.widget.Barrier
+                app:barrierAllowsGoneWidgets="true"
                 android:id="@+id/bPostDetailId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
