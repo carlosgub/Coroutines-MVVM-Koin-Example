@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.carlosgub.coroutines">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".CoroutinesApplication"
         android:allowBackup="false"

@@ -1,33 +1,55 @@
 package com.carlosgub.coroutines.features.books.presentation.activities
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.carlosgub.coroutines.R
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostDetailViewModel
+import com.carlosgub.coroutines.features.books.presentation.viewmodel.viewstate.PostDetailVS
 import kotlinx.android.synthetic.main.post_detail_activity.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PostDetailActivity : AppCompatActivity() {
 
-    private val viewModel : PostDetailViewModel by viewModel()
+    private val viewModel: PostDetailViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.post_detail_activity)
+        getViewModelComplete()
         getExtras()
     }
 
-    private fun getExtras(){
+    private fun getExtras() {
         val extras = intent.extras
-        if(extras!=null){
+        if (extras != null) {
             lifecycleScope.launch {
-                val post = viewModel.getPostById(extras.getInt("ID",-1).toString())
-                tvPostDetailId.text = "${post.id}"
-                tvPostDetailBody.text = post.body
-                tvPostDetailTitle.text = post.title
-                tvPostDetailUserId.text = "${post.userId}"
+                viewModel.getPostById(extras.getInt("ID", -1).toString())
+                pbPostDetail.visibility = View.GONE
             }
         }
+    }
+
+
+
+    private fun getViewModelComplete() {
+        viewModel.state.observe(this, Observer {
+            when (it) {
+                is PostDetailVS.Loading -> {
+                    pbPostDetail.visibility = if(it.show) View.VISIBLE else View.GONE
+                }
+
+                is PostDetailVS.GetPost -> {
+                    val post = it.post
+                    tvPostDetailId.text = "${post.id}"
+                    tvPostDetailBody.text = post.body
+                    tvPostDetailTitle.text = post.title
+                    tvPostDetailUserId.text = "${post.userId}"
+                }
+            }
+        })
     }
 }

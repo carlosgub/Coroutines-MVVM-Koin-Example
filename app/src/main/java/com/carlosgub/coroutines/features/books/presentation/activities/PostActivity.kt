@@ -3,6 +3,7 @@ package com.carlosgub.coroutines.features.books.presentation.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +31,9 @@ class PostActivity : AppCompatActivity(),RVPostAdapter.Listener {
         }
 
         lifecycleScope.launch {
+            pbPost.visibility = View.VISIBLE
             val posts = viewModel.getPosts()
+            pbPost.visibility = View.GONE
             mAdapter.addAll(posts)
         }
     }
