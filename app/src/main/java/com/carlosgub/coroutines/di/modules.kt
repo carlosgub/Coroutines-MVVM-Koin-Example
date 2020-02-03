@@ -5,7 +5,6 @@ import com.carlosgub.coroutines.features.books.data.repository.PostRepositoryImp
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostByIdInteractor
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
 import com.carlosgub.coroutines.features.books.domain.repository.PostRepository
-import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostDetailViewModel
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,9 +14,6 @@ private val postModule = module {
     //region ViewModel
     viewModel {
         PostViewModel(get())
-    }
-    viewModel {
-        PostDetailViewModel(get())
     }
     //endregion
 
