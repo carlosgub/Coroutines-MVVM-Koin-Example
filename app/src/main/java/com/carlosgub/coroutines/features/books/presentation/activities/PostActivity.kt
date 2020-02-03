@@ -1,19 +1,14 @@
 package com.carlosgub.coroutines.features.books.presentation.activities
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carlosgub.coroutines.R
 import com.carlosgub.coroutines.features.books.presentation.adapters.RVPostAdapter
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.post_activity.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
@@ -33,7 +28,7 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
             adapter = mAdapter
         }
 
-        viewModel.result.observe(this@PostActivity, Observer {
+        viewModel.books.observe(this@PostActivity, Observer {
             mAdapter.add(it)
         })
 
