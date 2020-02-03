@@ -2,4 +2,4 @@
 
 Ejemplo de como usar Coroutines Flow en Android
 
-![Image](img/1.jpng)
+![Image](img/1.png)
