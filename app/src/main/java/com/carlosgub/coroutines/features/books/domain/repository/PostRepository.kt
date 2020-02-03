@@ -1,8 +1,9 @@
 package com.carlosgub.coroutines.features.books.domain.repository
 
 import com.carlosgub.coroutines.features.books.domain.model.PostEntity
+import kotlinx.coroutines.flow.Flow
 
 interface PostRepository {
-    suspend fun getPosts(): List<PostEntity>
-    suspend fun getPostById(id: String): PostEntity
+    fun getPosts(): Flow<PostEntity>
+    fun getPostById(id: String): Flow<PostEntity>
 }

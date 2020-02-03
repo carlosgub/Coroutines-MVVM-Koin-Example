@@ -1,26 +1,22 @@
 package com.carlosgub.coroutines.core.network
 
-import android.content.Context
 import com.carlosgub.coroutines.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-open class BaseApiClient<T>(private val classT: Class<T>) : KoinComponent {
-    private val HEADER_AUTHORIZATION = "Authorization"
-    private val HEADER_AUTHORIZATION_TYPE = "Bearer "
-    private val context: Context by inject()
+open class BaseApiClient<T>(private val classT: Class<T>) {
 
-    open fun getApiClient(
-        CONNECTION_TIMEOUT: Long = 180L,
-        READ_TIMEOUT: Long = 180L,
-        WRITE_TIMEOUT: Long = 180L
-    ): T {
+    companion object{
+        const val CONNECTION_TIMEOUT: Long = 180L
+        const val READ_TIMEOUT: Long = 180L
+        const val WRITE_TIMEOUT: Long = 180L
+    }
+
+    open fun getApiClient(): T {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 

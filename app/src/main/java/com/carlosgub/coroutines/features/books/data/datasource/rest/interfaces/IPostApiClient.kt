@@ -5,8 +5,8 @@ import retrofit2.http.Path
 
 interface IPostApiClient {
     @GET("/posts")
-    suspend fun getPosts(): List<PostResponseData>
+    fun getPosts(): List<PostResponseData>
 
     @GET("/posts/{id}")
-    suspend fun getPostById(@Path("id") id:String): PostResponseData
+    fun getPostById(@Path("id") id:String): PostResponseData
 }

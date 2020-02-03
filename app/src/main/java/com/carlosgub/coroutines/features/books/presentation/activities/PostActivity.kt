@@ -1,27 +1,30 @@
 package com.carlosgub.coroutines.features.books.presentation.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carlosgub.coroutines.R
 import com.carlosgub.coroutines.features.books.presentation.adapters.RVPostAdapter
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
+import com.carlosgub.coroutines.features.books.presentation.viewmodel.viewstate.PostVS
 import kotlinx.android.synthetic.main.post_activity.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PostActivity : AppCompatActivity(),RVPostAdapter.Listener {
+class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
 
-    private val viewModel:PostViewModel by viewModel()
+    private val viewModel: PostViewModel by viewModel()
     private val mAdapter = RVPostAdapter()
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.post_activity)
+        viewModelComplete()
 
         mAdapter.setListener(this)
 
@@ -32,18 +35,25 @@ class PostActivity : AppCompatActivity(),RVPostAdapter.Listener {
 
         lifecycleScope.launch {
             pbPost.visibility = View.VISIBLE
-            val posts = viewModel.getPosts()
-
+            viewModel.getPosts()
             pbPost.visibility = View.GONE
-            mAdapter.addAll(posts)
         }
     }
 
-    override fun onPostClicked(id: Int) {
-        startActivity(Intent(this,PostDetailActivity::class.java).apply {
-            putExtras(Bundle().apply {
-                putInt("ID",id)
-            })
+    private fun viewModelComplete() {
+        viewModel.state.observe(this, Observer {
+            when (it) {
+                is PostVS.Loading -> {
+
+                }
+                is PostVS.AddPost -> {
+                    mAdapter.add(it.post)
+                }
+            }
         })
+    }
+
+    override fun onPostClicked(id: Int) {
+        startActivity(PostDetailActivity.getInstance(this, id))
     }
 }

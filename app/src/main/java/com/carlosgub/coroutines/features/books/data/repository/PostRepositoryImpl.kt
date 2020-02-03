@@ -4,6 +4,9 @@ import com.carlosgub.coroutines.features.books.data.datasource.rest.PostRestData
 import com.carlosgub.coroutines.features.books.data.mapper.PostDataMapper
 import com.carlosgub.coroutines.features.books.domain.model.PostEntity
 import com.carlosgub.coroutines.features.books.domain.repository.PostRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transform
 
 class PostRepositoryImpl(
     private val postRestDataStore: PostRestDataStore
@@ -11,10 +14,13 @@ class PostRepositoryImpl(
 
     private val mPostDataMapper by lazy { PostDataMapper() }
 
-    override suspend fun getPosts(): List<PostEntity> =
-        mPostDataMapper.map(postRestDataStore.getPosts())
+    override fun getPosts(): Flow<PostEntity> =
+        postRestDataStore.getPosts().transform{
+            mPostDataMapper.map(it)
+        }
 
-    override suspend fun getPostById(id: String): PostEntity =
-        mPostDataMapper.map(postRestDataStore.getPostById(id = id))
-
+    override fun getPostById(id: String): Flow<PostEntity> =
+        postRestDataStore.getPostById(id = id).transform {
+            mPostDataMapper.map(it)
+        }
 }
