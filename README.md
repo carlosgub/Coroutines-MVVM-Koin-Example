@@ -12,3 +12,5 @@ Ejemplo de como usar Coroutines Flow en Android
 - https://medium.com/makingtuenti/asynchronous-development-in-android-rxjava-vs-kotlin-flow-f7fdf2e2f81b
 
 - https://www.netguru.com/codestories/android-coroutines-%EF%B8%8Fin-2020
+
+- https://www.youtube.com/watch?v=B8ppnjGPAGE
