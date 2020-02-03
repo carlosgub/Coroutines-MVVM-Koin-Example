@@ -2,4 +2,4 @@
 
 Ejemplo de como usar Coroutines Flow en Android
 
-![Image](img/1.png)
+<img src="img/1.png" width="400" height="800" />
