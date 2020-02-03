@@ -1,8 +1,6 @@
 package com.carlosgub.coroutines.di
 
 import com.carlosgub.coroutines.features.books.data.datasource.rest.PostRestDataStore
-import com.carlosgub.coroutines.core.scheduler.Schedulers
-import com.carlosgub.coroutines.core.scheduler.SchedulersImpl
 import com.carlosgub.coroutines.features.books.data.repository.PostRepositoryImpl
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostByIdInteractor
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
@@ -11,13 +9,6 @@ import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostDetail
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-
-private val appModule = module {
-    single<Schedulers> {
-        SchedulersImpl()
-    }
-}
-
 
 private val postModule = module {
 
@@ -56,6 +47,4 @@ private val postModule = module {
     //endregion
 }
 
-val modules = listOf(
-    appModule, postModule
-)
+val modules = listOf(postModule)

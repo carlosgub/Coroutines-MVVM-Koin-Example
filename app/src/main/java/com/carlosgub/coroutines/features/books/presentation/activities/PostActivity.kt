@@ -12,6 +12,7 @@ import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewMo
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.viewstate.PostVS
 import kotlinx.android.synthetic.main.post_activity.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +36,9 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
 
         lifecycleScope.launch {
             pbPost.visibility = View.VISIBLE
-            viewModel.getPosts()
+            viewModel.getPosts().collect {
+                mAdapter.add(it)
+            }
             pbPost.visibility = View.GONE
         }
     }

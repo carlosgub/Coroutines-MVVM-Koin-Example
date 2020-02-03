@@ -6,13 +6,11 @@ import kotlinx.coroutines.flow.flow
 
 class PostRestDataStore {
 
-    fun getPosts(): Flow<PostResponseData> =
-        flow {
-            PostApiClient.getApiClient().getPosts().forEach {
-                emit(it)
-            }
+    fun getPosts(): Flow<PostResponseData> = flow {
+        PostApiClient.getApiClient().getPosts().forEach {
+            emit(it)
         }
-
+    }
 
 
     fun getPostById(id: String): Flow<PostResponseData> = flow {

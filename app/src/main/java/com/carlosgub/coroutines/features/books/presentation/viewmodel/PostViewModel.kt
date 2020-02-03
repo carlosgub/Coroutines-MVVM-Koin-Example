@@ -1,14 +1,17 @@
 package com.carlosgub.coroutines.features.books.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.carlosgub.coroutines.core.interactor.Interactor
 import com.carlosgub.coroutines.core.platform.BaseViewModel
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
+import com.carlosgub.coroutines.features.books.presentation.model.PostVM
 import com.carlosgub.coroutines.features.books.presentation.model.mapper.PostVMMapper
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.viewstate.PostVS
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 
 class PostViewModel(
     private val getPostsInteractor: GetPostsInteractor
@@ -19,11 +22,10 @@ class PostViewModel(
     private val mPostVMMapper by lazy { PostVMMapper() }
 
     @ExperimentalCoroutinesApi
-    fun getPosts() {
+    fun getPosts() : Flow<PostVM> =
         getPostsInteractor.execute(Interactor.None)
             .buffer()
-            .onEach { state.value = PostVS.AddPost(mPostVMMapper.map(it)) }
-            .catch { state.value = PostVS.Error(it.message) }
-            .launchIn(viewModelScope)
-    }
+            .map { mPostVMMapper.map(it) }
+            .catch { throw Throwable(it)  }
+
 }
