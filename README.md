@@ -33,3 +33,21 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 - Unit-testing LiveData and other common observability problems https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
 
 - MVVM Testing w/Coroutines https://github.com/emedinaa/kotlin-mvvm/tree/coroutines?fbclid=IwAR1XZW4yr-LuwlOYnVIz_glvsNunsdvloMHq3-Y8iGTNL2F4fJxhLNGizSo
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/carlosgub"><img src="https://avatars1.githubusercontent.com/u/30916886?s=460&v=4" width="100px;" alt=""/><br /><sub><b>Carlos Ugaz</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/jozedi"><img src="https://avatars3.githubusercontent.com/u/34400384?s=460&v=4" width="100px;" alt=""/><br /><sub><b>Jose Diaz</b></sub></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
