@@ -31,3 +31,5 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 - Reactive scrabble benchmarks https://github.com/Kotlin/kotlinx.coroutines/blob/develop/benchmarks/src/jmh/kotlin/benchmarks/flow/scrabble/README.md
 
 - Unit-testing LiveData and other common observability problems https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
+
+- MVVM Testing w/Coroutines https://github.com/emedinaa/kotlin-mvvm/tree/coroutines?fbclid=IwAR1XZW4yr-LuwlOYnVIz_glvsNunsdvloMHq3-Y8iGTNL2F4fJxhLNGizSo
