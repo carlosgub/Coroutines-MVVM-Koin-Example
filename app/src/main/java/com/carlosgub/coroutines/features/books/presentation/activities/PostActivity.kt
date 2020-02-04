@@ -32,7 +32,7 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
         }
 
         //Obtener los Posts
-        viewModel.getPosts().observe(this@PostActivity, Observer {
+        viewModel.viewState.observe(this@PostActivity, Observer {
             when (it) {
                 is PostVS.AddPost -> {
                     mAdapter.add(it.postVM)
@@ -43,6 +43,8 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
             }
 
         })
+
+        viewModel.getPosts()
     }
 
 
