@@ -36,7 +36,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     //GOOGLE ANDROID
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     //ANDROID X
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -52,12 +52,12 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 
     //COROUTINES
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
 
     //RETROFIT
-    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.2"
 
     //TESTING

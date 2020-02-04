@@ -7,6 +7,9 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
+// Informacion
+// https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
+
 @VisibleForTesting
 fun <T> LiveData<T>.getOrAwaitValue(
     time: Long = 3,
