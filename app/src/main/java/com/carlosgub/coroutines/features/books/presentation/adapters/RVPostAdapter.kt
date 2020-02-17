@@ -3,6 +3,7 @@ package com.carlosgub.coroutines.features.books.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosgub.coroutines.R
 import com.carlosgub.coroutines.features.books.presentation.model.PostVM
@@ -13,8 +14,16 @@ class RVPostAdapter : RecyclerView.Adapter<RVPostAdapter.ViewHolder>() {
     private val mList: MutableList<PostVM> = mutableListOf()
     private var mListener: Listener? = null
 
-    fun add(lstPostVM: PostVM) {
-        mList.add(lstPostVM)
+    @BindingAdapter("data")
+    fun setRecyclerViewProperties(recyclerView: RecyclerView?, data: PostVM) {
+        val adapter = recyclerView?.adapter
+        if (adapter is RVPostAdapter) {
+            adapter.add(data)
+        }
+    }
+
+    fun add(postVM: PostVM) {
+        mList.add(postVM)
         notifyItemInserted(this.itemCount)
     }
 

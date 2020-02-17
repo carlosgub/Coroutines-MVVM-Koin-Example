@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carlosgub.coroutines.R
+import com.carlosgub.coroutines.databinding.PostActivityBinding
 import com.carlosgub.coroutines.features.books.presentation.adapters.RVPostAdapter
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.state.PostVS
@@ -22,7 +24,10 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.post_activity)
+        val binding: PostActivityBinding = DataBindingUtil.setContentView(this, R.layout.post_activity)
+
+        binding.postViewModel = viewModel
+        binding.lifecycleOwner = this
 
         mAdapter.setListener(this)
 
