@@ -38,10 +38,6 @@ class PostViewModel(
                     ui {
                         _data.value = list
                     }
-
-                    ui {
-                        _viewState.value = PostVS.Finish
-                    }
                 }
             } catch (e: Exception) {
                 ui {

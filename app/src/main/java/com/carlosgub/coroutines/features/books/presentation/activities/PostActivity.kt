@@ -3,15 +3,12 @@ package com.carlosgub.coroutines.features.books.presentation.activities
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carlosgub.coroutines.R
 import com.carlosgub.coroutines.databinding.PostActivityBinding
 import com.carlosgub.coroutines.features.books.presentation.adapters.RVPostAdapter
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.state.PostVS
-import kotlinx.android.synthetic.main.post_activity.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,15 +20,18 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: PostActivityBinding =
-            DataBindingUtil.setContentView(this, R.layout.post_activity)
+        /*val binding: PostActivityBinding =
+            DataBindingUtil.setContentView(this, R.layout.post_activity)*/
+
+        val binding = PostActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.lifecycleOwner = this
         binding.postViewModel = viewModel
 
         _adapter.setListener(this)
 
-        rvPost.apply {
+        binding.rvPost.apply {
             layoutManager = LinearLayoutManager(this@PostActivity)
             adapter = _adapter
         }
@@ -41,10 +41,6 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
             when (it) {
                 is PostVS.Error -> {
                     Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
-                }
-                is PostVS.Finish -> {
-                    Toast.makeText(applicationContext, "${_adapter.itemCount}", Toast.LENGTH_SHORT)
-                        .show()
                 }
             }
 

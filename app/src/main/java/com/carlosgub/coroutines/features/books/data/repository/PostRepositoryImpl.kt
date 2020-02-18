@@ -4,6 +4,7 @@ import com.carlosgub.coroutines.features.books.data.datasource.rest.PostRestData
 import com.carlosgub.coroutines.features.books.data.mapper.PostDataMapper
 import com.carlosgub.coroutines.features.books.domain.model.PostEntity
 import com.carlosgub.coroutines.features.books.domain.repository.PostRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -22,6 +23,7 @@ class PostRepositoryImpl(
 
 
 
+    @ExperimentalCoroutinesApi
     override fun getPostById(id: String): Flow<PostEntity> =
         postRestDataStore.getPostById(id = id).transform {
             mPostDataMapper.map(it)
