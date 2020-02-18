@@ -26,7 +26,7 @@ class PostViewModelTest {
     private val useCaseMock = mockk<GetPostsInteractor>()
     private lateinit var viewModel: PostViewModel
     private val observer = mockk<Observer<PostVS>>(relaxed = true)
-    private val dataObserver = mockk<Observer<PostVM>>(relaxed = true)
+    private val dataObserver = mockk<Observer<List<PostVM>>>(relaxed = true)
 
     @Before
     fun setup() {
@@ -40,7 +40,7 @@ class PostViewModelTest {
         coEvery { useCaseMock.execute(Interactor.None) } returns TestData.dataList.asFlow()
         viewModel.getPosts()
         viewModel.data.getOrAwaitValue()
-        verify(exactly = 3) { dataObserver.onChanged(any()) }
+        verify(exactly = 1) { dataObserver.onChanged(any()) }
     }
 
     @Test
