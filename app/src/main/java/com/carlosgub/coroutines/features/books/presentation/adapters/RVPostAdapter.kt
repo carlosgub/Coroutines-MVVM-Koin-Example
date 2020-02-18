@@ -11,24 +11,16 @@ import kotlinx.android.synthetic.main.post_item.view.*
 
 class RVPostAdapter : RecyclerView.Adapter<RVPostAdapter.ViewHolder>() {
 
-    private val mList: MutableList<PostVM> = mutableListOf()
-    private var mListener: Listener? = null
-
-    @BindingAdapter("data")
-    fun setRecyclerViewProperties(recyclerView: RecyclerView?, data: PostVM) {
-        val adapter = recyclerView?.adapter
-        if (adapter is RVPostAdapter) {
-            adapter.add(data)
-        }
-    }
+    private val list: MutableList<PostVM> = mutableListOf()
+    private var listener: Listener? = null
 
     fun add(postVM: PostVM) {
-        mList.add(postVM)
+        list.add(postVM)
         notifyItemInserted(this.itemCount)
     }
 
     fun setListener(listener: Listener) {
-        mListener = listener
+        this.listener = listener
     }
 
     interface Listener {
@@ -40,18 +32,26 @@ class RVPostAdapter : RecyclerView.Adapter<RVPostAdapter.ViewHolder>() {
             .inflate(R.layout.post_item, parent, false)
     )
 
-    override fun getItemCount() = mList.size
+    override fun getItemCount() = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(mList[position])
+        holder.bind(list[position])
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(postVM: PostVM) {
-            itemView.tvPostItemTitle.text = postVM.title
-            itemView.cvPostItem.setOnClickListener {
-                mListener?.onPostClicked(postVM.id ?: 1)
+            itemView.tvPostItemTitle?.text = postVM.title
+            itemView.cvPostItem?.setOnClickListener {
+                listener?.onPostClicked(postVM.id ?: 1)
             }
         }
+    }
+}
+
+@BindingAdapter("data")
+fun setRecyclerViewProperties(recyclerView: RecyclerView?, data: PostVM?) {
+    val adapter = recyclerView?.adapter
+    if (adapter is RVPostAdapter && data != null) {
+        adapter.add(data)
     }
 }

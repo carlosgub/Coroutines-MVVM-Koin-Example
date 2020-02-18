@@ -1,7 +1,6 @@
 package com.carlosgub.coroutines.features.books.presentation.activities
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,31 +18,33 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
 
     private val viewModel: PostViewModel by viewModel()
-    private val mAdapter = RVPostAdapter()
+    private val _adapter = RVPostAdapter()
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: PostActivityBinding = DataBindingUtil.setContentView(this, R.layout.post_activity)
+        val binding: PostActivityBinding =
+            DataBindingUtil.setContentView(this, R.layout.post_activity)
 
         binding.postViewModel = viewModel
         binding.lifecycleOwner = this
 
-        mAdapter.setListener(this)
+        _adapter.setListener(this)
 
         rvPost.apply {
             layoutManager = LinearLayoutManager(this@PostActivity)
-            adapter = mAdapter
+            adapter = _adapter
         }
 
         //Obtener los Posts
         viewModel.viewState.observe(this@PostActivity, Observer {
             when (it) {
-                is PostVS.AddPost -> {
-                    mAdapter.add(it.postVM)
-                }
                 is PostVS.Error -> {
                     Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is PostVS.Finish -> {
+                    Toast.makeText(applicationContext, "${_adapter.itemCount}", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 

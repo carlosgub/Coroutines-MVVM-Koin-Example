@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
+<layout xmlns:binding="http://schemas.android.com/tools">
     <data>
-
         <variable
             name="postViewModel"
             type="com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel" />
@@ -17,7 +15,7 @@
             android:id="@+id/rvPost"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:data="@{postViewModel._data}"
+            app:data="@{postViewModel._data}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
