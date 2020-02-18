@@ -26,8 +26,8 @@ class PostActivity : AppCompatActivity(), RVPostAdapter.Listener {
         val binding: PostActivityBinding =
             DataBindingUtil.setContentView(this, R.layout.post_activity)
 
-        binding.postViewModel = viewModel
         binding.lifecycleOwner = this
+        binding.postViewModel = viewModel
 
         _adapter.setListener(this)
 

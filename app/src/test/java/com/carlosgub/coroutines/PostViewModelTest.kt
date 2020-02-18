@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.carlosgub.coroutines.core.interactor.Interactor
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
+import com.carlosgub.coroutines.features.books.presentation.model.PostVM
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.state.PostVS
 import com.carlosgub.coroutines.utils.CoroutinesRule
@@ -25,19 +26,21 @@ class PostViewModelTest {
     private val useCaseMock = mockk<GetPostsInteractor>()
     private lateinit var viewModel: PostViewModel
     private val observer = mockk<Observer<PostVS>>(relaxed = true)
+    private val dataObserver = mockk<Observer<PostVM>>(relaxed = true)
 
     @Before
     fun setup() {
         viewModel = PostViewModel(useCaseMock)
         viewModel.viewState.observeForever(observer)
+        viewModel.data.observeForever(dataObserver)
     }
 
     @Test
     fun `retrieve posts successful`() {
         coEvery { useCaseMock.execute(Interactor.None) } returns TestData.dataList.asFlow()
         viewModel.getPosts()
-        viewModel.viewState.getOrAwaitValue()
-        verify(exactly = 3) { observer.onChanged(any<PostVS.AddPost>()) }
+        viewModel.data.getOrAwaitValue()
+        verify(exactly = 3) { dataObserver.onChanged(any()) }
     }
 
     @Test

@@ -19,8 +19,8 @@ class PostViewModel(
     private val getPostsInteractor: GetPostsInteractor
 ) : BaseViewModel() {
 
-    private val _data = MutableLiveData<PostVM>()
-    val data: LiveData<PostVM>
+    private val _data = MutableLiveData<List<PostVM>>()
+    val data: LiveData<List<PostVM>>
         get() = _data
 
     val viewState: LiveData<PostVS>
@@ -33,12 +33,12 @@ class PostViewModel(
         viewModelScope.launch {
             try {
                 io {
-                    getPostsInteractor.execute(Interactor.None).collect {
-                        ui {
-                            delay(20)
-                            _data.value = postVMMapper.map(it)
-                        }
+                    val list =
+                        getPostsInteractor.execute(Interactor.None).toList().map(postVMMapper::map)
+                    ui {
+                        _data.value = list
                     }
+
                     ui {
                         _viewState.value = PostVS.Finish
                     }
