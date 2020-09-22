@@ -6,12 +6,16 @@ import com.carlosgub.coroutines.features.books.domain.interactor.GetPostByIdInte
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
 import com.carlosgub.coroutines.features.books.domain.repository.PostRepository
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
+import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 private val postModule = module {
 
     //region ViewModel
+    viewModel {
+        PostsViewModel(get())
+    }
     viewModel {
         PostViewModel(get())
     }

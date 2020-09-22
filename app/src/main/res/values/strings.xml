@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Coroutines Example</string>
+    <!--region Post Activity-->
+    <string name="post_text">%s\n\n%s</string>
+    <!--endregion-->
 </resources>

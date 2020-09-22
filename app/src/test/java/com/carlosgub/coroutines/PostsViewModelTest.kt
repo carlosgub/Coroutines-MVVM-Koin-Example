@@ -4,8 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.carlosgub.coroutines.core.interactor.Interactor
 import com.carlosgub.coroutines.features.books.domain.interactor.GetPostsInteractor
-import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostViewModel
+import com.carlosgub.coroutines.features.books.presentation.viewmodel.PostsViewModel
 import com.carlosgub.coroutines.features.books.presentation.viewmodel.state.PostVS
+import com.carlosgub.coroutines.features.books.presentation.viewmodel.state.PostsVS
 import com.carlosgub.coroutines.utils.CoroutinesRule
 import com.carlosgub.coroutines.utils.getOrAwaitValue
 import io.mockk.*
@@ -13,7 +14,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
 import org.junit.*
 
-class PostViewModelTest {
+class PostsViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -23,12 +24,12 @@ class PostViewModelTest {
     var coroutinesRule = CoroutinesRule()
 
     private val useCaseMock = mockk<GetPostsInteractor>()
-    private lateinit var viewModel: PostViewModel
-    private val observer = mockk<Observer<PostVS>>(relaxed = true)
+    private lateinit var viewModel: PostsViewModel
+    private val observer = mockk<Observer<PostsVS>>(relaxed = true)
 
     @Before
     fun setup() {
-        viewModel = PostViewModel(useCaseMock)
+        viewModel = PostsViewModel(useCaseMock)
         viewModel.viewState.observeForever(observer)
     }
 
@@ -37,7 +38,7 @@ class PostViewModelTest {
         coEvery { useCaseMock.execute(Interactor.None) } returns TestData.dataList.asFlow()
         viewModel.getPosts()
         viewModel.viewState.getOrAwaitValue()
-        verify(exactly = 3) { observer.onChanged(any<PostVS.AddPost>()) }
+        verify(exactly = 3) { observer.onChanged(any<PostsVS.AddPost>()) }
     }
 
     @Test
@@ -45,7 +46,7 @@ class PostViewModelTest {
         coEvery { useCaseMock.execute(Interactor.None) } throws UnsupportedOperationException()
         viewModel.getPosts()
         viewModel.viewState.getOrAwaitValue()
-        verify { observer.onChanged(any<PostVS.Error>()) }
+        verify { observer.onChanged(any<PostsVS.Error>()) }
     }
 
     @Suppress("UNREACHABLE_CODE")
