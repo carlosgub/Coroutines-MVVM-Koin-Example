@@ -3,22 +3,26 @@
 
 This is an example of an Android App who uses coroutines flow to retrieve a list of https://jsonplaceholder.typicode.com/posts but retrieve the data one per one and be added to the RecyclerView.
 
+## V2
+- Add screen to see the detail of the post (you need to tap an item on the RecyclerView)
+- Update Gradle Version to 4.0.1 (Need Android Studio 4.0.1)
+- Update dependencies 
+
 <img src="img/1.png" width="400" height="800" />
 
 ## Dependencies
 
-- Material 1 [version: '1.1.0'](https://developer.android.com/guide/topics/ui/look-and-feel)
-- AndroidX [version: '1.0.0'](https://mvnrepository.com/artifact/androidx)
-- LifeCycleKtx 2 [version: '2.2.0'](https://developer.android.com/kotlin/ktx)
-- Koin 2 [version: '2.2.0'](https://insert-koin.io)
-- Coroutines 1 [version: '1.3.3'](https://kotlinlang.org/docs/reference/coroutines-overview.html)
-- Coroutines Test 1 [version '1.3.2'](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)
-- Retrofit 2 [version: '2.6.0'](https://square.github.io/retrofit/)
-- Gson [version:'2.7.1'](https://github.com/google/gson)
-- OkHttp 4 [version: '4.2.2'](https://square.github.io/okhttp/)
-- Mockk 1 [version: '1.9.3'](https://github.com/mockk/mockk)
-- Arch Testing 1 [version: '1.1.1'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
-- JUnit 4 [version: '4.12'](https://junit.org/junit4/)
+- Material[version: '1.2.0'](https://developer.android.com/guide/topics/ui/look-and-feel)
+- LifeCycleKtx [version: '2.2.0'](https://developer.android.com/kotlin/ktx)
+- Koin [version: '2.0.1'](https://insert-koin.io)
+- Coroutines [version: '1.3.7'](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+- Coroutines Test [version '1.3.2'](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)
+- Retrofit [version: '2.7.2'](https://square.github.io/retrofit/)
+- Gson [version:'2.7.2'](https://github.com/google/gson)
+- OkHttp 3 [version: '4.2.2'](https://square.github.io/okhttp/)
+- Mockk [version: '1.9.3'](https://github.com/mockk/mockk)
+- Arch Testing [version: '1.1.1'](https://mvnrepository.com/artifact/android.arch.core/core-testing?repo=google)
+- JUnit [version: '4.12'](https://junit.org/junit4/)
 
 
 # References
