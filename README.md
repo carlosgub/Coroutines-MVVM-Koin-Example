@@ -5,8 +5,12 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 
 ## V2
 - Add screen to see the detail of the post (you need to tap an item on the RecyclerView)
-- Update Gradle Version to 4.0.1 (Need Android Studio 4.0.1)
+- Update Gradle Version to 4.0.1 (you need Android Studio 4.0.1 or upper)
 - Update dependencies 
+
+## V3 (working)
+-Add Data Binding
+-Add View Binding
 
 <img src="img/PostsActivity.png" width="400" height="800" />
 <img src="img/PostActivity.png" width="400" height="800" />
