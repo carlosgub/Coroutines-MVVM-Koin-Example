@@ -12,8 +12,10 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 - Add Data Binding
 - Add View Binding
 
-<img src="img/PostsActivity.png" width="400" height="800" />
-<img src="img/PostActivity.png" width="400" height="800" />
+## ScreenShots
+!<img src="img/PostsActivity.png" width="400" height="800" /> !<img src="img/PostActivity.png" width="400" height="800" />
+
+
 
 ## Dependencies
 
