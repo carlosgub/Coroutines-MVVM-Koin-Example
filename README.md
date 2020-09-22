@@ -8,7 +8,8 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 - Update Gradle Version to 4.0.1 (Need Android Studio 4.0.1)
 - Update dependencies 
 
-<img src="img/1.png" width="400" height="800" />
+<img src="img/PostsActivity.png" width="400" height="800" />
+<img src="img/PostActivity.png" width="400" height="800" />
 
 ## Dependencies
 
