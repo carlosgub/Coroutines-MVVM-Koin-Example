@@ -9,8 +9,7 @@ This is an example of an Android App who uses coroutines flow to retrieve a list
 - Update dependencies 
 
 ## V3 (working)
-- Add Data Binding
-- Add View Binding
+- Change Layouts for Compose :)
 
 ## ScreenShots
 !<img src="img/PostsActivity.png" width="400" height="800" /> !<img src="img/PostActivity.png" width="400" height="800" />
